@@ -2,376 +2,666 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ephraim | Web Developer Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Ephraim (Ephiy) - Web Developer & System Builder</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
-    <div class="book-container">
-        <!-- Book Cover -->
-        <div class="book-cover" id="cover">
-            <div class="cover-content">
-                <div class="closed-book" id="closedBook">
-                    <div class="book-spine"></div>
-                    <div class="book-front">
-                        <h1 class="title-main">Ephraim</h1>
-                        <h2 class="title-sub">Web Developer & System Builder</h2>
-                        <div class="book-decoration">
-                            <div class="decoration-line"></div>
-                            <div class="decoration-circle"></div>
-                            <div class="decoration-line"></div>
-                        </div>
-                    </div>
+    <!-- Background Animation Elements -->
+    <div class="background-animation">
+        <div class="particle" style="top:10%; left:5%;"></div>
+        <div class="particle" style="top:30%; left:90%;"></div>
+        <div class="particle" style="top:70%; left:15%;"></div>
+        <div class="particle" style="top:85%; left:80%;"></div>
+        <div class="orbital-ring"></div>
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="pulse-ring"></div>
+        <div class="energy-beam"></div>
+    </div>
+    
+    <!-- Audio Control Panel -->
+    <div class="audio-control-panel" id="audioControlPanel">
+        <div class="audio-header">
+            <i class="fas fa-music"></i>
+            <h3>Audio Control</h3>
+            <button class="audio-close" id="audioClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="audio-controls">
+            <div class="audio-control-group">
+                <label for="bgMusicVolume">
+                    <i class="fas fa-volume-up"></i>
+                    Background Music
+                </label>
+                <div class="volume-control">
+                    <input type="range" id="bgMusicVolume" min="0" max="100" value="50" class="volume-slider">
+                    <span class="volume-value">50%</span>
                 </div>
-                <div class="open-instruction">
-                    <div class="hand-icon">
-                        <i class="fas fa-hand-point-up"></i>
-                    </div>
-                    <p>Swipe or tap to open</p>
+            </div>
+            
+            <div class="audio-control-group">
+                <label for="sfxVolume">
+                    <i class="fas fa-bell"></i>
+                    Sound Effects
+                </label>
+                <div class="volume-control">
+                    <input type="range" id="sfxVolume" min="0" max="100" value="70" class="volume-slider">
+                    <span class="volume-value">70%</span>
+                </div>
+            </div>
+            
+            <div class="audio-control-group">
+                <label for="ambienceVolume">
+                    <i class="fas fa-wind"></i>
+                    Ambience
+                </label>
+                <div class="volume-control">
+                    <input type="range" id="ambienceVolume" min="0" max="100" value="30" class="volume-slider">
+                    <span class="volume-value">30%</span>
                 </div>
             </div>
         </div>
-
-        <!-- Book Pages Container -->
-        <div class="book-pages" id="bookPages">
-            <!-- Page 1 - Introduction -->
-            <section class="page page-1 active" data-page="1" aria-label="About Me">
-                <div class="page-content">
-                    <div class="page-header">
-                        <div class="page-number">1</div>
-                        <h2 class="page-title">About Me</h2>
-                    </div>
-                    <div class="page-body">
-                        <div class="text-container">
-                            <p class="intro-text">
-                                I am a passionate <span class="highlight">Web Developer</span> specializing in:
-                            </p>
-                            <ul class="skills-list">
-                                <li><span class="skill-icon">⚡</span>PHP & MySQL</li>
-                                <li><span class="skill-icon">⚡</span>HTML5 & CSS3</li>
-                                <li><span class="skill-icon">⚡</span>JavaScript</li>
-                            </ul>
-                            <p class="intro-text">
-                                I love building clean, scalable, and human-centered digital experiences that solve real problems.
-                            </p>
-                            <div class="passion-section">
-                                <h3>My Passion</h3>
-                                <div class="passion-items">
-                                    <div class="passion-item">
-                                        <i class="fas fa-code"></i>
-                                        <p>Clean Code</p>
-                                    </div>
-                                    <div class="passion-item">
-                                        <i class="fas fa-brain"></i>
-                                        <p>Problem Solving</p>
-                                    </div>
-                                    <div class="passion-item">
-                                        <i class="fas fa-robot"></i>
-                                        <p>AI Systems</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="page-corner"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page 2 - Skills & Experience -->
-            <section class="page page-2" data-page="2" aria-label="Skills & Experience">
-                <div class="page-content">
-                    <div class="page-header">
-                        <div class="page-number">2</div>
-                        <h2 class="page-title">Skills & Experience</h2>
-                    </div>
-                    <div class="page-body">
-                        <!-- Soft Skills -->
-                        <div class="skills-section">
-                            <h3><i class="fas fa-user-circle"></i> Core Skills</h3>
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Speaking</span>
-                                        <span class="skill-value" data-value="85">0%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Problem Solving</span>
-                                        <span class="skill-value" data-value="90">0%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Analytical Thinking</span>
-                                        <span class="skill-value" data-value="88">0%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="88"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Team Collaboration</span>
-                                        <span class="skill-value" data-value="87">0%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" data-width="87"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Technical Stack -->
-                        <div class="tech-section">
-                            <h3><i class="fas fa-cogs"></i> Technical Stack</h3>
-                            <div class="tech-grid">
-                                <div class="tech-item" data-tech="html">
-                                    <i class="fab fa-html5"></i>
-                                    <span>HTML5</span>
-                                </div>
-                                <div class="tech-item" data-tech="css">
-                                    <i class="fab fa-css3-alt"></i>
-                                    <span>CSS3</span>
-                                </div>
-                                <div class="tech-item" data-tech="js">
-                                    <i class="fab fa-js-square"></i>
-                                    <span>JavaScript</span>
-                                </div>
-                                <div class="tech-item" data-tech="php">
-                                    <i class="fab fa-php"></i>
-                                    <span>PHP</span>
-                                </div>
-                                <div class="tech-item" data-tech="mysql">
-                                    <i class="fas fa-database"></i>
-                                    <span>MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Education -->
-                        <div class="education-section">
-                            <h3><i class="fas fa-graduation-cap"></i> Education & Certificates</h3>
-                            <div class="education-item">
-                                <div class="edu-icon">
-                                    <i class="fas fa-laptop-code"></i>
-                                </div>
-                                <div class="edu-content">
-                                    <h4>Web Development</h4>
-                                    <p>Comprehensive training in modern web technologies and system architecture</p>
-                                </div>
-                            </div>
-                            <div class="education-item">
-                                <div class="edu-icon">
-                                    <i class="fas fa-crown"></i>
-                                </div>
-                                <div class="edu-content">
-                                    <h4>gebeyayie.com</h4>
-                                    <p>Founder and owner - Registered intellectual property</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page 3 - Projects -->
-            <section class="page page-3" data-page="3" aria-label="Projects">
-                <div class="page-content">
-                    <div class="page-header">
-                        <div class="page-number">3</div>
-                        <h2 class="page-title">Projects</h2>
-                    </div>
-                    <div class="page-body">
-                        <div class="projects-container">
-                            <!-- Project 1 -->
-                            <div class="project-card" data-project="1">
-                                <div class="sticky-note">
-                                    <div class="note-header">
-                                        <div class="note-pin"></div>
-                                        <h3>gebeyayie.com</h3>
-                                    </div>
-                                    <div class="note-content">
-                                        <p>A comprehensive web platform showcasing my work and services in web development and system building.</p>
-                                        <div class="tech-tags">
-                                            <span>PHP</span>
-                                            <span>MySQL</span>
-                                            <span>JavaScript</span>
-                                        </div>
-                                    </div>
-                                    <button class="view-project-btn" data-url="https://gebeyayie.com">
-                                        View Project <i class="fas fa-external-link-alt"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Project 2 -->
-                            <div class="project-card" data-project="2">
-                                <div class="sticky-note">
-                                    <div class="note-header">
-                                        <div class="note-pin"></div>
-                                        <h3>Portfolio System</h3>
-                                    </div>
-                                    <div class="note-content">
-                                        <p>Interactive book-like portfolio with 3D page flip animations and responsive design.</p>
-                                        <div class="tech-tags">
-                                            <span>HTML5</span>
-                                            <span>CSS3</span>
-                                            <span>JavaScript</span>
-                                        </div>
-                                    </div>
-                                    <button class="view-project-btn" data-url="#">
-                                        View Details <i class="fas fa-external-link-alt"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Project 3 -->
-                            <div class="project-card" data-project="3">
-                                <div class="sticky-note">
-                                    <div class="note-header">
-                                        <div class="note-pin"></div>
-                                        <h3>AI Integration Project</h3>
-                                    </div>
-                                    <div class="note-content">
-                                        <p>Modern web application with AI capabilities for enhanced user experiences.</p>
-                                        <div class="tech-tags">
-                                            <span>PHP</span>
-                                            <span>JavaScript</span>
-                                            <span>API</span>
-                                        </div>
-                                    </div>
-                                    <button class="view-project-btn" data-url="#">
-                                        Coming Soon <i class="fas fa-clock"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-instruction">
-                            <p>Click on any project card to view details</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page 4 - Contact -->
-            <section class="page page-4" data-page="4" aria-label="Contact">
-                <div class="page-content">
-                    <div class="page-header">
-                        <div class="page-number">4</div>
-                        <h2 class="page-title">Let's Connect</h2>
-                    </div>
-                    <div class="page-body">
-                        <div class="contact-container">
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="contact-details">
-                                        <h3>Location</h3>
-                                        <p>Available for remote work worldwide</p>
-                                    </div>
-                                </div>
-
-                                <div class="contact-item" id="emailContact">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="contact-details">
-                                        <h3>Email</h3>
-                                        <p class="email-text">contact@gebeyayie.com</p>
-                                        <span class="copy-hint">Click to copy</span>
-                                    </div>
-                                </div>
-
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-globe"></i>
-                                    </div>
-                                    <div class="contact-details">
-                                        <h3>Website</h3>
-                                        <p>gebeyayie.com</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="social-links">
-                                <h3>Find Me Online</h3>
-                                <div class="social-icons">
-                                    <a href="#" class="social-icon" aria-label="GitHub">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="LinkedIn">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="Twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="CodePen">
-                                        <i class="fab fa-codepen"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="contact-message">
-                                <p>I'm always open to discussing new opportunities, creative projects, or just having a chat about technology!</p>
-                            </div>
-                        </div>
-
-                        <div class="page-end">
-                            <div class="end-decoration">
-                                <div class="line"></div>
-                                <div class="circle"></div>
-                                <div class="line"></div>
-                            </div>
-                            <p class="end-quote">"Building the web, one line at a time"</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div class="book-controls">
-            <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous page">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="page-indicator">
-                <span class="current-page" id="currentPage">1</span>
-                <span class="separator">/</span>
-                <span class="total-pages">4</span>
-            </div>
-            
-            <button class="nav-btn next-btn" id="nextBtn" aria-label="Next page">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <!-- Project Modal -->
-        <div class="project-modal" id="projectModal">
-            <div class="modal-content">
-                <button class="modal-close" id="modalClose">&times;</button>
-                <h3 class="modal-title" id="modalTitle"></h3>
-                <p class="modal-description" id="modalDescription"></p>
-                <div class="modal-tech" id="modalTech"></div>
-                <a class="modal-link" id="modalLink" target="_blank" rel="noopener noreferrer">
-                    Visit Project <i class="fas fa-external-link-alt"></i>
-                </a>
+        
+        <div class="audio-presets">
+            <h4>Sound Presets</h4>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-preset="epic">
+                    <i class="fas fa-crown"></i>
+                    Epic
+                </button>
+                <button class="preset-btn" data-preset="calm">
+                    <i class="fas fa-spa"></i>
+                    Calm
+                </button>
+                <button class="preset-btn" data-preset="cinematic">
+                    <i class="fas fa-film"></i>
+                    Cinematic
+                </button>
+                <button class="preset-btn" data-preset="off">
+                    <i class="fas fa-volume-mute"></i>
+                    Mute All
+                </button>
             </div>
         </div>
     </div>
+    
+    <!-- Sound Toggle -->
+    <div class="sound-toggle" id="soundToggle">
+        <div class="sound-icon">
+            <i class="fas fa-music"></i>
+            <div class="sound-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Profile -->
+    <div class="floating-profile" id="floatingProfile">
+        <div class="floating-profile-container">
+            <img src="./profile.jpg" 
+                 alt="Ephraim" class="floating-profile-img">
+            <div class="floating-profile-text">
+                <div class="floating-name">Ephraim (Ephiy)</div>
+                <div class="floating-role">Web Developer & System Builder</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Sections -->
+    <main class="sections-container">
+        <!-- Section 1: Hero -->
+        <section class="section hero-section" id="hero">
+            <div class="dynamic-gradient"></div>
+            <div class="hero-content">
+                <div class="profile-image-container" id="profileImageContainer">
+                    <div class="profile-glow"></div>
+                    <img src="./profile.jpg" 
+                         alt="Ephraim" class="profile-image" id="mainProfileImage">
+                </div>
+                <h1 class="hero-name">Ephraim <span class="accent-gradient">(Ephiy)</span></h1>
+                <p class="hero-title">Web Developer & System Builder</p>
+                <div class="typewriter-text">
+                    <span class="typewriter">Building the future, one line at a time.</span>
+                </div>
+                <div class="hero-cta">
+                    <button class="cta-btn explore-btn" id="exploreBtn">
+                        <i class="fas fa-compass"></i>
+                        <span>Explore My World</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="scroll-dot"></div>
+                </div>
+            </div>
+            <div class="hero-grid"></div>
+            <div class="hero-orbits">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+            </div>
+        </section>
+
+        <!-- Section 2: About Me -->
+        <section class="section about-section" id="about">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">About Me</span></h2>
+                <div class="about-content">
+                    <div class="about-card" data-sound="card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <p class="about-text">I am a passionate Web Developer focused on building clean, reliable, and human-centered digital products.</p>
+                    </div>
+                    
+                    <div class="about-card" data-sound="card">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <p class="about-text">I specialize in PHP, MySQL, HTML, CSS, and JavaScript, and I enjoy turning complex ideas into simple, functional systems that people actually enjoy using.</p>
+                    </div>
+                    
+                    <div class="about-card" data-sound="card">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <p class="about-text">My approach to development is practical and creative. I care deeply about performance, clarity, and long-term scalability.</p>
+                    </div>
+                    
+                    <div class="about-card" data-sound="card">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <p class="about-text">Beyond coding, I'm driven by curiosity — especially around modern web technologies, AI-powered tools, and systems that solve real-world problems.</p>
+                    </div>
+                    
+                    <div class="highlight-line" data-sound="highlight">
+                        <div class="highlight-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <span>I don't just build websites — I build systems that grow.</span>
+                        <div class="highlight-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Skills & Stack -->
+        <section class="section skills-section" id="skills">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">Skills & Stack</span></h2>
+                
+                <div class="skills-container">
+                    <div class="soft-skills">
+                        <h3 class="skills-subtitle">Soft & Analytical Skills</h3>
+                        <div class="skills-grid">
+                            <!-- Skills will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="technical-skills">
+                        <div class="tech-card" data-sound="card">
+                            <div class="tech-card-header">
+                                <i class="fas fa-desktop"></i>
+                                <h3>Technical Stack</h3>
+                            </div>
+                            <div class="tech-categories">
+                                <div class="tech-category">
+                                    <h4><i class="fas fa-paint-brush"></i> Frontend</h4>
+                                    <div class="tech-items">
+                                        <span class="tech-item glow" data-sound="tech">HTML5</span>
+                                        <span class="tech-item glow" data-sound="tech">CSS3</span>
+                                        <span class="tech-item glow" data-sound="tech">JavaScript</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h4><i class="fas fa-server"></i> Backend</h4>
+                                    <div class="tech-items">
+                                        <span class="tech-item glow" data-sound="tech">PHP</span>
+                                        <span class="tech-item glow" data-sound="tech">MySQL</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <h4><i class="fas fa-tools"></i> Other Skills</h4>
+                                    <div class="tech-items">
+                                        <span class="tech-item" data-sound="tech">Responsive Design</span>
+                                        <span class="tech-item" data-sound="tech">System Administration</span>
+                                        <span class="tech-item" data-sound="tech">Website Deployment</span>
+                                        <span class="tech-item" data-sound="tech">Security Practices</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fun-tip" data-sound="card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <span>Did you know? 79% of the world's websites run on PHP — including Facebook, Wikipedia, and WordPress.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 4: Education & Credentials -->
+        <section class="section education-section" id="education">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">Education & Credentials</span></h2>
+                <p class="section-intro">I have a strong foundation in web development and system support, with hands-on experience building and maintaining real products.</p>
+                
+                <div class="certificates-grid">
+                    <div class="certificate-card" data-sound="card">
+                        <div class="certificate-thumbnail" data-certificate="earthlink">
+                            <img src="./certificate-1.jpg" alt="Front-End Development Certificate" class="certificate-image">
+                            <div class="certificate-overlay">
+                                <i class="fas fa-expand"></i>
+                                <span>View Certificate</span>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h3>Earthlink Technologies</h3>
+                                <p>Front-End Development Course Certificate</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-card" data-sound="card">
+                        <div class="certificate-thumbnail" data-certificate="fleet">
+                            <img src="./certificate-2.jpg" alt="Fleet Management Certificate" class="certificate-image">
+                            <div class="certificate-overlay">
+                                <i class="fas fa-expand"></i>
+                                <span>View Certificate</span>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <div class="certificate-icon">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                            <div>
+                                <h3>Fleet Management Course</h3>
+                                <p>Professional certification in fleet operations and management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-badge" data-sound="highlight">
+                    <div class="badge-content">
+                        <div class="badge-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="badge-text">
+                            <span>Registered Intellectual Property Owner</span>
+                            <p>I am the designer and developer of gebeyayie.com — a registered digital platform with protected intellectual property.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Projects -->
+        <section class="section projects-section" id="projects">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">Projects</span></h2>
+                <div class="projects-grid">
+                    <div class="project-card" data-sound="card" data-project="gebeyayie">
+                        <div class="project-thumbnail">
+                            <div class="project-glow"></div>
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <img src="https://api.screenshotmachine.com?key=a533d8&url=https://gebeyayie.com/beta/&dimension=1024x768" 
+                                 alt="gebeyayie.com" class="website-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3>gebeyayie.com</h3>
+                            <p>Secure online shop with delivery system and Google Maps integration.</p>
+                            <button class="project-link" data-project="gebeyayie">
+                                <span>View Project</span>
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-sound="card" data-project="ekzones">
+                        <div class="project-thumbnail">
+                            <div class="project-glow"></div>
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <img src="https://api.screenshotmachine.com?key=a533d8&url=ekzones.com&dimension=1024x768" 
+                                 alt="ekzones.com" class="website-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3>ekzones.com</h3>
+                            <p>Portfolio & technology hub showcasing modern web development.</p>
+                            <button class="project-link" data-project="ekzones">
+                                <span>View Project</span>
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-sound="card" data-project="gstrading">
+                        <div class="project-thumbnail">
+                            <div class="project-glow"></div>
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <img src="https://api.screenshotmachine.com?key=a533d8&url=https://gstradingplcet.com&dimension=1024x768" 
+                                 alt="gstradingplcet.com" class="website-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3>gstradingplcet.com</h3>
+                            <p>Transport company website with quotation system and map integration.</p>
+                            <button class="project-link" data-project="gstrading">
+                                <span>View Project</span>
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-sound="card" data-project="elearning">
+                        <div class="project-thumbnail">
+                            <div class="project-glow"></div>
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <img src="https://api.screenshotmachine.com?key=a533d8&url=https://gebeyayie.com/ai/&dimension=1024x768" 
+                                 alt="E-learning Platform" class="website-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3>E-learning Platform</h3>
+                            <p>Interactive learning platform with course management and progress tracking.</p>
+                            <button class="project-link" data-project="elearning">
+                                <span>View Project</span>
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Questionnaire -->
+        <section class="section questionnaire-section" id="questionnaire">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">Work With Me</span></h2>
+                <div class="questionnaire-content">
+                    <div class="questionnaire-text">
+                        <div class="text-card" data-sound="card">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h3>Project Questionnaire</h3>
+                            <p>To ensure we start your project on the right foot, I've created a detailed questionnaire that helps clarify your vision, goals, and requirements.</p>
+                            <p>This document helps clients explain their needs clearly before starting a project, saving time and ensuring we're aligned from day one.</p>
+                        </div>
+                    </div>
+                    <div class="document-preview">
+                        <div class="document-card" data-sound="card">
+                            <div class="document-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="document-info">
+                                <h3>Client Questionnaire</h3>
+                                <span class="document-format">WEBQUEST.PDF</span>
+                                <p>Complete this form to help me understand your project requirements and goals.</p>
+                            </div>
+                            <div class="document-actions">
+                                <a href="./webquest.docx" download class="btn btn-primary" data-sound="click">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                                <button class="btn btn-secondary" id="previewQuestionnaire" data-sound="click">
+                                    <i class="fas fa-eye"></i> To view download it
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Contact -->
+        <section class="section contact-section" id="contact">
+            <div class="container">
+                <h2 class="section-title"><span class="title-highlight">Let's Connect</span></h2>
+                <p class="section-intro">I'm always open to collaborations, opportunities, and meaningful conversations. Feel free to reach out.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-card" data-sound="card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Location</h3>
+                            <p>Kansanga, Kampala, Uganda</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card" data-sound="card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <p id="emailText">ephraim.kesete@gmail.com</p>
+                            <button class="btn btn-copy" id="copyEmail" data-sound="click">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card" data-sound="card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Phone</h3>
+                            <p id="phoneText">+256 747840215</p>
+                            <button class="btn btn-copy" id="copyPhone" data-sound="click">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card" data-sound="card">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Website</h3>
+                            <a href="https://ekzones.com" target="_blank" class="website-link" data-sound="click">ekzones.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="closing-line" data-sound="highlight">
+                    <div class="closing-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <span>Great ideas start with a simple conversation.</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Certificate Modal -->
+    <div class="modal" id="certificateModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal project-modal" id="projectModal">
+        <div class="modal-content project-modal-content">
+            <button class="modal-close project-modal-close" id="projectModalClose">&times;</button>
+            <div class="project-modal-header">
+                <div class="project-modal-title">
+                    <h2 id="projectModalTitle">Project Title</h2>
+                    <div class="project-modal-tech">
+                        <!-- Tech tags will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="project-modal-actions">
+                    <a href="#" target="_blank" class="btn btn-primary" id="projectLiveLink" data-sound="click">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visit Live Site
+                    </a>
+                    <!-- <button class="btn btn-secondary" id="projectCloseBtn" data-sound="click">
+                        <i class="fas fa-times"></i>
+                        Close
+                    </button> -->
+                </div>
+            </div>
+            <div class="project-modal-body">
+                <div class="project-screenshot">
+                    <div class="screenshot-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <span class="browser-dot red"></span>
+                                <span class="browser-dot yellow"></span>
+                                <span class="browser-dot green"></span>
+                            </div>
+                            <div class="browser-url" id="projectUrl">https://example.com</div>
+                            <div class="browser-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <div class="screenshot-container">
+                            <img id="projectScreenshot" src="" alt="Project Screenshot" class="project-screenshot-img">
+                            <div class="screenshot-loading">
+                                <div class="loading-spinner"></div>
+                                <p>Loading project preview...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <div class="project-description">
+                        <h3>Project Description</h3>
+                        <p id="projectDescription">Project description will appear here...</p>
+                    </div>
+                    <div class="project-features">
+                        <h3>Key Features</h3>
+                        <ul id="projectFeatures">
+                            <!-- Features will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="project-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-code"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="projectLines">5000+</span>
+                                <span class="stat-label">Lines of Code</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="projectDuration">2 months</span>
+                                <span class="stat-label">Development Time</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="projectTeam">Solo</span>
+                                <span class="stat-label">Team Size</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Modal -->
+    <div class="modal" id="pdfModal">
+        <div class="modal-content pdf-modal-content">
+            <button class="modal-close" id="pdfModalClose">&times;</button>
+            <div class="pdf-modal-header">
+                <h2>Client Questionnaire</h2>
+                <p>Please fill out this questionnaire to help me understand your project requirements</p>
+            </div>
+            <div class="pdf-modal-body">
+                <div class="pdf-viewer" id="pdfViewer">
+                    <div class="pdf-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading PDF document...</p>
+                    </div>
+                    <iframe id="pdfFrame" src="./webquest.pdf" style="display:none;"></iframe>
+                </div>
+                <div class="pdf-actions">
+                    <a href="./webquest.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <button class="btn btn-secondary" id="closePdfModal">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="skillTooltip"></div>
+
+    <!-- Audio elements for sound effects -->
+<!-- Audio elements for sound effects - UPDATED with reliable sources -->
+<audio id="bgMusic" loop preload="auto">
+    <!-- Fallback to silent audio if external fails -->
+    <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+    <!-- Fallback silent audio -->
+    <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI1LjEwMQAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjM0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV" type="audio/mpeg">
+</audio>
+<audio id="ambience" loop preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-ambient-sci-fi-903.mp3" type="audio/mpeg">
+    <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI1LjEwMQAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjM0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV" type="audio/mpeg">
+</audio>
+<audio id="hoverSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+</audio>
+<audio id="clickSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-plastic-bubble-click-1124.mp3" type="audio/mpeg">
+</audio>
+<audio id="cardSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" type="audio/mpeg">
+</audio>
+<audio id="techSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+</audio>
+<audio id="highlightSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+</audio>
+<audio id="modalOpenSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-interface-select-902.mp3" type="audio/mpeg">
+</audio>
+<audio id="modalCloseSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-interface-dismiss-901.mp3" type="audio/mpeg">
+</audio>
 
     <script src="script.js"></script>
 </body>
