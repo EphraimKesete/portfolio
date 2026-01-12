@@ -1,465 +1,771 @@
-// script.js
+// script.js - FIXED VERSION
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const bookCover = document.getElementById('cover');
-    const bookPages = document.getElementById('bookPages');
-    const pages = document.querySelectorAll('.page');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const currentPageEl = document.getElementById('currentPage');
-    const emailContact = document.getElementById('emailContact');
-    const projectCards = document.querySelectorAll('.project-card');
-    const projectModal = document.getElementById('projectModal');
+    // Global Variables
+    const sections = document.querySelectorAll('.section');
+    const floatingProfile = document.getElementById('floatingProfile');
+    const heroSection = document.getElementById('hero');
+    const skillsGrid = document.querySelector('.skills-grid');
+    const emailText = document.getElementById('emailText');
+    const copyEmailBtn = document.getElementById('copyEmail');
+    const phoneText = document.getElementById('phoneText');
+    const copyPhoneBtn = document.getElementById('copyPhone');
+    const certificateModal = document.getElementById('certificateModal');
     const modalClose = document.getElementById('modalClose');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalTech = document.getElementById('modalTech');
-    const modalLink = document.getElementById('modalLink');
-    const skillProgressBars = document.querySelectorAll('.skill-progress');
-    const skillValues = document.querySelectorAll('.skill-value');
+    const modalBody = document.getElementById('modalBody');
+    const soundToggle = document.getElementById('soundToggle');
+    const audioControlPanel = document.getElementById('audioControlPanel');
+    const audioClose = document.getElementById('audioClose');
+    const previewQuestionnaireBtn = document.getElementById('previewQuestionnaire');
+    const projectModal = document.getElementById('projectModal');
+    const projectModalClose = document.getElementById('projectModalClose');
+    const projectCloseBtn = document.getElementById('projectCloseBtn');
+    const exploreBtn = document.getElementById('exploreBtn');
+    const profileImageContainer = document.getElementById('profileImageContainer');
+    const mainProfileImage = document.getElementById('mainProfileImage');
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfModalClose = document.getElementById('pdfModalClose');
+    const closePdfModalBtn = document.getElementById('closePdfModal');
     
-    // State Variables
-    let currentPage = 1;
-    let totalPages = 4;
-    let isAnimating = false;
-    let touchStartX = 0;
-    let touchEndX = 0;
+    // Audio elements - Using base64 encoded short audio clips for reliability
+    const bgMusic = document.getElementById('bgMusic');
+    const ambience = document.getElementById('ambience');
+    const hoverSound = document.getElementById('hoverSound');
+    const clickSound = document.getElementById('clickSound');
+    const cardSound = document.getElementById('cardSound');
+    const techSound = document.getElementById('techSound');
+    const highlightSound = document.getElementById('highlightSound');
+    const modalOpenSound = document.getElementById('modalOpenSound');
+    const modalCloseSound = document.getElementById('modalCloseSound');
     
-    // Open Book Cover
-    function openBook() {
-        if (bookCover.classList.contains('open')) return;
-        
-        bookCover.classList.add('open');
-        
-        // Show first page after book opens
-        setTimeout(() => {
-            document.querySelector('.page-1').classList.add('active');
-            updatePageIndicator();
-            animatePageContent(1);
-        }, 600);
-    }
+    // Volume controls
+    const bgMusicVolume = document.getElementById('bgMusicVolume');
+    const sfxVolume = document.getElementById('sfxVolume');
+    const ambienceVolume = document.getElementById('ambienceVolume');
     
-    // Navigate to specific page
-    function goToPage(pageNumber) {
-        if (isAnimating || pageNumber < 1 || pageNumber > totalPages) return;
-        
-        // Don't do anything if already on this page
-        if (pageNumber === currentPage) return;
-        
-        isAnimating = true;
-        
-        // Determine direction
-        const direction = pageNumber > currentPage ? 'next' : 'prev';
-        
-        // Get current and target pages
-        const currentPageEl = document.querySelector(`.page-${currentPage}`);
-        const targetPageEl = document.querySelector(`.page-${pageNumber}`);
-        
-        // Animation for page flip
-        if (direction === 'next') {
-            // Move current page to left
-            currentPageEl.classList.add('previous');
-            
-            // Show and animate new page from right
-            targetPageEl.classList.remove('previous');
-            targetPageEl.classList.add('active', 'flipping');
-            
-            setTimeout(() => {
-                currentPageEl.classList.remove('active', 'flipping');
-                targetPageEl.classList.remove('flipping');
-                currentPage = pageNumber;
-                updatePageIndicator();
-                animatePageContent(pageNumber);
-                isAnimating = false;
-            }, 800);
-        } else {
-            // For previous page, we need to handle differently
-            targetPageEl.classList.add('active', 'flipping');
-            currentPageEl.classList.add('flipping');
-            
-            setTimeout(() => {
-                currentPageEl.classList.remove('active');
-                targetPageEl.classList.remove('previous', 'flipping');
-                currentPageEl.classList.remove('flipping');
-                currentPage = pageNumber;
-                updatePageIndicator();
-                animatePageContent(pageNumber);
-                isAnimating = false;
-            }, 800);
+    // Project data
+    const projects = {
+        gebeyayie: {
+            title: "gebeyayie.com",
+            description: "A secure online shopping platform with integrated delivery system and Google Maps integration. Built with modern e-commerce features including secure payments, user authentication, and real-time order tracking.",
+            url: "https://gebeyayie.com",
+            screenshot: "https://api.screenshotmachine.com?key=a533d8&url=https://gebeyayie.com/beta/&dimension=1024x768",
+            features: [
+                "Secure online payment integration",
+                "Real-time Google Maps delivery tracking",
+                "User authentication and profiles",
+                "Product catalog with search and filters",
+                "Order management system",
+                "Responsive mobile-first design"
+            ],
+            tech: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
+            lines: "85000+",
+            duration: "2 months",
+            team: "Solo"
+        },
+        ekzones: {
+            title: "ekzones.com",
+            description: "A portfolio and technology hub showcasing modern web development techniques and projects. Features interactive demonstrations of coding skills and project showcases.",
+            url: "https://ekzones.com",
+            screenshot: "https://api.screenshotmachine.com?key=a533d8&url=https://ekzones.com&dimension=1024x768",
+            features: [
+                "Interactive portfolio showcase",
+                "Live code demonstrations",
+                "Project case studies",
+                "Responsive design across all devices",
+                "Performance optimized loading",
+                "Modern UI/UX design"
+            ],
+            tech: ["JavaScript", "HTML5", "CSS3", "PHP"],
+            lines: "5200+",
+            duration: "1 week",
+            team: "Solo"
+        },
+        gstrading: {
+            title: "gstradingplcet.com",
+            description: "Transport company website featuring a quotation system and integrated map functionality. Built to streamline client inquiries and service requests.",
+            url: "https://gstradingplcet.com",
+            screenshot: "https://api.screenshotmachine.com?key=a533d8&url=https://gstradingplcet.com&dimension=1024x768",
+            features: [
+                "Automated quotation system",
+                "Map integration for route planning",
+                "Service request management",
+                "Client dashboard",
+                "Real-time updates",
+                "Multi-language support"
+            ],
+            tech: ["PHP", "MySQL", "JavaScript", "Google Maps API"],
+            lines: "6800+",
+            duration: "0.5 months",
+            team: "Solo"
+        },
+        elearning: {
+            title: "E-learning Platform",
+            description: "Interactive learning platform with comprehensive course management and progress tracking. Built for delivering educational content with engagement features.",
+            url: "ekzones.com/ai",
+            screenshot: "https://api.screenshotmachine.com?key=a533d8&url=https://gebeyayie.com/ai/&dimension=1024x7680",
+            features: [
+                "Course management system",
+                "Progress tracking and analytics",
+                "Interactive quizzes and assessments",
+                "Video lesson hosting",
+                "Student discussion forums",
+                "Certificate generation"
+            ],
+            tech: ["PHP", "MySQL", "JavaScript", "Video.js"],
+            lines: "24,345+",
+            duration: "1 months",
+            team: "Solo"
         }
-    }
+    };
     
-    // Update page indicator
-    function updatePageIndicator() {
-        currentPageEl.textContent = currentPage;
-        
-        // Update button states
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = currentPage === totalPages;
-        
-        // Visual feedback for disabled buttons
-        if (prevBtn.disabled) {
-            prevBtn.style.opacity = '0.5';
-            prevBtn.style.cursor = 'not-allowed';
-        } else {
-            prevBtn.style.opacity = '1';
-            prevBtn.style.cursor = 'pointer';
+    // Soft Skills Data for circular progress
+    const softSkills = [
+        { 
+            name: 'Communication', 
+            level: 90,
+            description: 'Clear communication with both technical and non-technical teams.',
+            color: '#6c63ff'
+        },
+        { 
+            name: 'Problem Solving', 
+            level: 95,
+            description: 'Strong logical thinking and structured problem analysis.',
+            color: '#ff6b9d'
+        },
+        { 
+            name: 'Analytical Thinking', 
+            level: 88,
+            description: 'Breaking down complex problems into manageable components.',
+            color: '#00d4ff'
+        },
+        { 
+            name: 'Adaptability', 
+            level: 92,
+            description: 'Fast learner in new tools and environments.',
+            color: '#00ff9d'
         }
-        
-        if (nextBtn.disabled) {
-            nextBtn.style.opacity = '0.5';
-            nextBtn.style.cursor = 'not-allowed';
-        } else {
-            nextBtn.style.opacity = '1';
-            nextBtn.style.cursor = 'pointer';
-        }
-    }
+    ];
     
-    // Animate content on page load
-    function animatePageContent(pageNumber) {
-        const page = document.querySelector(`.page-${pageNumber}`);
-        
-        // Reset animations for all elements
-        const animatableElements = page.querySelectorAll('.intro-text, .skills-list li, .passion-section, .skills-section, .tech-section, .education-section, .project-card, .contact-container, .project-instruction');
-        
-        animatableElements.forEach(el => {
-            el.style.animation = 'none';
-            void el.offsetWidth; // Trigger reflow
-        });
-        
-        // Different animations based on page
-        switch(pageNumber) {
-            case 1:
-                // Animate intro text
-                const introTexts = page.querySelectorAll('.intro-text');
-                const skillItems = page.querySelectorAll('.skills-list li');
-                const passionSection = page.querySelector('.passion-section');
-                
-                introTexts.forEach((text, index) => {
-                    text.style.animation = `fadeInUp 0.8s forwards ${0.3 + index * 0.2}s`;
-                });
-                
-                skillItems.forEach((item, index) => {
-                    item.style.animation = `fadeInLeft 0.6s forwards ${0.5 + index * 0.2}s`;
-                });
-                
-                if (passionSection) {
-                    passionSection.style.animation = 'fadeInUp 0.8s forwards 1.1s';
-                }
-                break;
-                
-            case 2:
-                // Animate skill bars
-                animateSkillBars();
-                
-                // Animate sections
-                const sections = page.querySelectorAll('.skills-section, .tech-section, .education-section');
-                sections.forEach((section, index) => {
-                    section.style.animation = `fadeInUp 0.8s forwards ${0.3 + index * 0.2}s`;
-                });
-                
-                // Add hover effects to tech items
-                const techItems = page.querySelectorAll('.tech-item');
-                techItems.forEach(item => {
-                    item.addEventListener('mouseenter', function() {
-                        const tech = this.getAttribute('data-tech');
-                        const icon = this.querySelector('i');
-                        
-                        // Add a subtle pulse effect
-                        icon.style.transform = 'scale(1.2)';
-                        setTimeout(() => {
-                            icon.style.transform = 'scale(1)';
-                        }, 300);
-                    });
-                });
-                break;
-                
-            case 3:
-                // Animate project cards
-                const projectCards = page.querySelectorAll('.project-card');
-                projectCards.forEach((card, index) => {
-                    card.style.animation = `fadeInUp 0.8s forwards ${0.3 + index * 0.2}s`;
-                });
-                
-                const instruction = page.querySelector('.project-instruction');
-                if (instruction) {
-                    instruction.style.animation = 'fadeIn 1s forwards 1s';
-                }
-                break;
-                
-            case 4:
-                // Animate contact items
-                const contactContainer = page.querySelector('.contact-container');
-                if (contactContainer) {
-                    contactContainer.style.animation = 'fadeInUp 0.8s forwards 0.3s';
-                }
-                break;
-        }
-    }
+    // Audio state
+    let audioEnabled = false;
+    let currentAudioPreset = 'epic';
     
-    // Animate skill bars with counting effect
-    function animateSkillBars() {
-        skillProgressBars.forEach((bar, index) => {
-            const width = bar.getAttribute('data-width');
-            bar.style.width = '0%';
-            
-            // Start animation with delay
-            setTimeout(() => {
-                bar.style.transition = 'width 1.5s ease-out';
-                bar.style.width = `${width}%`;
-            }, 300 + index * 200);
-        });
-        
-        // Animate skill values counting up
-        skillValues.forEach((valueEl, index) => {
-            const targetValue = parseInt(valueEl.getAttribute('data-value'));
-            let currentValue = 0;
-            const increment = targetValue / 50; // 50 steps
-            const duration = 1500; // 1.5 seconds
-            
-            // Start counting with delay
-            setTimeout(() => {
-                const timer = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= targetValue) {
-                        currentValue = targetValue;
-                        clearInterval(timer);
-                    }
-                    valueEl.textContent = Math.round(currentValue) + '%';
-                }, duration / 50);
-            }, 300 + index * 200);
-        });
-    }
+    // Initialize the page
+    init();
     
-    // Copy email to clipboard
-    function copyEmailToClipboard() {
-        const email = 'contact@gebeyayie.com';
-        
-        navigator.clipboard.writeText(email).then(() => {
-            // Show success feedback
-            const emailText = emailContact.querySelector('.email-text');
-            const originalText = emailText.textContent;
-            
-            emailText.textContent = 'Copied to clipboard!';
-            emailText.style.color = 'var(--success-color)';
-            
-            setTimeout(() => {
-                emailText.textContent = originalText;
-                emailText.style.color = '';
-            }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy email: ', err);
-            alert('Failed to copy email. Please copy it manually: ' + email);
-        });
-    }
-    
-    // Show project modal
-    function showProjectModal(projectCard) {
-        const note = projectCard.querySelector('.sticky-note');
-        const title = note.querySelector('h3').textContent;
-        const description = note.querySelector('p').textContent;
-        const techTags = note.querySelectorAll('.tech-tags span');
-        const button = note.querySelector('.view-project-btn');
-        const url = button.getAttribute('data-url');
-        
-        // Set modal content
-        modalTitle.textContent = title;
-        modalDescription.textContent = description;
-        
-        // Clear and add tech tags
-        modalTech.innerHTML = '';
-        techTags.forEach(tag => {
-            const span = document.createElement('span');
-            span.textContent = tag.textContent;
-            modalTech.appendChild(span);
-        });
-        
-        // Set link
-        if (url === '#') {
-            modalLink.style.display = 'none';
-        } else {
-            modalLink.href = url;
-            modalLink.style.display = 'inline-flex';
-        }
-        
-        // Show modal
-        projectModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // Close project modal
-    function closeProjectModal() {
-        projectModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    // Handle touch gestures for mobile
-    function handleTouchStart(e) {
-        touchStartX = e.changedTouches[0].screenX;
-    }
-    
-    function handleTouchEnd(e) {
-        if (isAnimating) return;
-        
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        const minSwipeDistance = 50;
-        
-        // Right to left swipe (next)
-        if (diff > minSwipeDistance && currentPage < totalPages) {
-            goToPage(currentPage + 1);
-        }
-        // Left to right swipe (previous)
-        else if (diff < -minSwipeDistance && currentPage > 1) {
-            goToPage(currentPage - 1);
-        }
-    }
-    
-    // Keyboard navigation
-    function handleKeyDown(e) {
-        if (isAnimating) return;
-        
-        switch(e.key) {
-            case 'ArrowLeft':
-                if (currentPage > 1) {
-                    e.preventDefault();
-                    goToPage(currentPage - 1);
-                }
-                break;
-            case 'ArrowRight':
-            case ' ':
-                if (currentPage < totalPages) {
-                    e.preventDefault();
-                    goToPage(currentPage + 1);
-                }
-                break;
-            case 'Home':
-                e.preventDefault();
-                goToPage(1);
-                break;
-            case 'End':
-                e.preventDefault();
-                goToPage(totalPages);
-                break;
-        }
-    }
-    
-    // Initialize
     function init() {
-        // Set initial state
-        updatePageIndicator();
+        // Set up scroll behavior (removed forced scrolling)
+        setupScrollBehavior();
         
-        // Open book on first interaction
-        const openBookOnInteraction = () => {
-            openBook();
-            document.removeEventListener('click', openBookOnInteraction);
-            document.removeEventListener('touchstart', openBookOnInteraction);
-        };
+        // Create soft skills with circular progress
+        createCircularSkills();
         
-        document.addEventListener('click', openBookOnInteraction);
-        document.addEventListener('touchstart', openBookOnInteraction);
+        // Set up event listeners
+        setupEventListeners();
         
-        // Navigation buttons
-        prevBtn.addEventListener('click', () => {
-            if (currentPage > 1 && !isAnimating) {
-                goToPage(currentPage - 1);
-            }
+        // Set up Intersection Observer for animations
+        setupIntersectionObserver();
+        
+        // Initialize audio system
+        setupAudioSystem();
+        
+        // Add entrance animation
+        setTimeout(playEntranceAnimation, 300);
+    }
+    
+    function setupScrollBehavior() {
+        // REMOVED forced scrolling behavior - let users scroll naturally
+        
+        // Update profile position on scroll
+        window.addEventListener('scroll', updateProfilePosition);
+        
+        // Initial position update
+        updateProfilePosition();
+    }
+    
+    function updateProfilePosition() {
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        const heroHeight = heroSection.offsetHeight;
+        
+        if (scrollPosition > heroHeight * 0.3) {
+            profileImageContainer.classList.add('scrolled');
+            floatingProfile.classList.add('active');
+        } else {
+            profileImageContainer.classList.remove('scrolled');
+            floatingProfile.classList.remove('active');
+        }
+    }
+    
+    function createCircularSkills() {
+        skillsGrid.innerHTML = '';
+        
+        softSkills.forEach(skill => {
+            const skillElement = document.createElement('div');
+            skillElement.className = 'skill-item fade-in';
+            skillElement.innerHTML = `
+                <div class="circular-progress" data-percent="${skill.level}" data-color="${skill.color}">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-circle" stroke="${skill.color}" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+                    </svg>
+                    <div class="progress-value">${skill.level}%</div>
+                </div>
+                <div class="skill-info">
+                    <h4>${skill.name}</h4>
+                    <p>${skill.description}</p>
+                </div>
+            `;
+            
+            skillsGrid.appendChild(skillElement);
+            
+            // Add sound on hover
+            skillElement.addEventListener('mouseenter', () => playSound(techSound, 0.3));
+            
+            // Animate progress circle
+            setTimeout(() => {
+                animateCircularProgress(skillElement);
+            }, 500);
+        });
+    }
+    
+    function animateCircularProgress(element) {
+        const circle = element.querySelector('.progress-ring-circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        const percent = parseInt(element.querySelector('.circular-progress').getAttribute('data-percent'));
+        
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+        
+        const offset = circumference - (percent / 100) * circumference;
+        
+        setTimeout(() => {
+            circle.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+            circle.style.strokeDashoffset = offset;
+        }, 100);
+    }
+    
+    function setupEventListeners() {
+        // Copy email to clipboard
+        copyEmailBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(emailText.textContent).then(() => {
+                showCopyFeedback(this, 'Copied!');
+                playSound(clickSound);
+            }).catch(err => {
+                console.error('Failed to copy email: ', err);
+            });
         });
         
-        nextBtn.addEventListener('click', () => {
-            if (currentPage < totalPages && !isAnimating) {
-                goToPage(currentPage + 1);
-            }
+        // Copy phone to clipboard
+        copyPhoneBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(phoneText.textContent).then(() => {
+                showCopyFeedback(this, 'Copied!');
+                playSound(clickSound);
+            }).catch(err => {
+                console.error('Failed to copy phone: ', err);
+            });
         });
         
-        // Email copy functionality
-        emailContact.addEventListener('click', copyEmailToClipboard);
-        
-        // Project cards
-        projectCards.forEach(card => {
-            card.addEventListener('click', () => {
-                showProjectModal(card);
+        // Certificate modal - FIXED
+        const certificateThumbnails = document.querySelectorAll('.certificate-thumbnail');
+        certificateThumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const certificateType = this.getAttribute('data-certificate');
+                openCertificateModal(certificateType);
+                playSound(modalOpenSound);
             });
         });
         
         // Modal close
-        modalClose.addEventListener('click', closeProjectModal);
-        
-        // Close modal on outside click
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal) {
-                closeProjectModal();
+        modalClose.addEventListener('click', closeCertificateModal);
+        certificateModal.addEventListener('click', function(e) {
+            if (e.target === certificateModal) {
+                closeCertificateModal();
+                playSound(modalCloseSound);
             }
         });
         
-        // Touch gestures
-        bookPages.addEventListener('touchstart', handleTouchStart, false);
-        bookPages.addEventListener('touchend', handleTouchEnd, false);
+        // Project modal - FIXED
+        const projectLinks = document.querySelectorAll('.project-link');
+        projectLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const projectId = this.getAttribute('data-project');
+                openProjectModal(projectId);
+                playSound(modalOpenSound);
+            });
+        });
         
-        // Keyboard navigation
-        document.addEventListener('keydown', handleKeyDown);
-        
-        // Page indicator dots (optional enhancement)
-        createPageIndicatorDots();
-    }
-    
-    // Create page indicator dots (optional)
-    function createPageIndicatorDots() {
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'page-dots';
-        dotsContainer.style.cssText = `
-            position: absolute;
-            bottom: 5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.8rem;
-            z-index: 10;
-        `;
-        
-        for (let i = 1; i <= totalPages; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'page-dot';
-            dot.setAttribute('aria-label', `Go to page ${i}`);
-            dot.style.cssText = `
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border: none;
-                background: ${i === currentPage ? 'var(--accent-color)' : 'rgba(255, 255, 255, 0.5)'};
-                cursor: pointer;
-                transition: background 0.3s ease;
-                padding: 0;
-            `;
-            
-            dot.addEventListener('click', () => {
-                if (!isAnimating) {
-                    goToPage(i);
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.project-link') && !e.target.closest('.project-info')) {
+                    const projectId = this.getAttribute('data-project');
+                    openProjectModal(projectId);
+                    playSound(modalOpenSound);
                 }
             });
+        });
+        
+        // Project modal close
+        projectModalClose.addEventListener('click', closeProjectModal);
+        projectCloseBtn.addEventListener('click', closeProjectModal);
+        projectModal.addEventListener('click', function(e) {
+            if (e.target === projectModal) {
+                closeProjectModal();
+                playSound(modalCloseSound);
+            }
+        });
+        
+        // PDF modal for questionnaire
+        previewQuestionnaireBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openPdfModal();
+            playSound(modalOpenSound);
+        });
+        
+        // PDF modal close
+        pdfModalClose.addEventListener('click', closePdfModal);
+        closePdfModalBtn.addEventListener('click', closePdfModal);
+        pdfModal.addEventListener('click', function(e) {
+            if (e.target === pdfModal) {
+                closePdfModal();
+                playSound(modalCloseSound);
+            }
+        });
+        
+        // Explore button
+        exploreBtn.addEventListener('click', function() {
+            playSound(clickSound, 0.7);
             
-            dotsContainer.appendChild(dot);
-        }
+            // Scroll to next section smoothly
+            const aboutSection = document.getElementById('about');
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        });
         
-        document.querySelector('.book-container').appendChild(dotsContainer);
+        // Add sound effects to interactive elements
+        addSoundEffects();
         
-        // Update dots when page changes
-        const updateDots = () => {
-            const dots = document.querySelectorAll('.page-dot');
-            dots.forEach((dot, index) => {
-                dot.style.background = index + 1 === currentPage ? 
-                    'var(--accent-color)' : 'rgba(255, 255, 255, 0.5)';
-            });
-        };
-        
-        // Override updatePageIndicator to also update dots
-        const originalUpdatePageIndicator = updatePageIndicator;
-        updatePageIndicator = () => {
-            originalUpdatePageIndicator();
-            updateDots();
-        };
+        // Add keyboard shortcuts for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (certificateModal.classList.contains('active')) {
+                    closeCertificateModal();
+                } else if (projectModal.classList.contains('active')) {
+                    closeProjectModal();
+                } else if (pdfModal.classList.contains('active')) {
+                    closePdfModal();
+                }
+            }
+        });
     }
     
-    // Initialize the application
-    init();
+    function showCopyFeedback(button, message) {
+        const originalText = button.innerHTML;
+        button.innerHTML = `<i class="fas fa-check"></i> ${message}`;
+        button.style.background = 'var(--success)';
+        button.style.borderColor = 'var(--success)';
+        
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.background = '';
+            button.style.borderColor = '';
+        }, 2000);
+    }
+    
+    function addSoundEffects() {
+        // Card hover sounds
+        const cards = document.querySelectorAll('[data-sound="card"]');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => playSound(cardSound, 0.3));
+            card.addEventListener('click', () => playSound(clickSound, 0.5));
+        });
+        
+        // Tech item sounds
+        const techItems = document.querySelectorAll('[data-sound="tech"]');
+        techItems.forEach(item => {
+            item.addEventListener('mouseenter', () => playSound(techSound, 0.3));
+            item.addEventListener('click', () => playSound(clickSound, 0.5));
+        });
+        
+        // Highlight sounds
+        const highlights = document.querySelectorAll('[data-sound="highlight"]');
+        highlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => playSound(highlightSound, 0.4));
+            highlight.addEventListener('click', () => playSound(highlightSound, 0.6));
+        });
+        
+        // Button sounds
+        const buttons = document.querySelectorAll('[data-sound="click"]');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => playSound(clickSound, 0.5));
+        });
+        
+        // General hover sounds
+        const hoverElements = document.querySelectorAll('.skill-item, .tech-item, .project-link, .btn, .certificate-thumbnail, .project-card, .about-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => playSound(hoverSound, 0.2));
+        });
+    }
+    
+    function setupIntersectionObserver() {
+        // Fade-in animation for elements
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Add a subtle sound when elements come into view
+                    if (audioEnabled && entry.intersectionRatio > 0.5) {
+                        playSound(cardSound, 0.1);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+    }
+    
+    function openCertificateModal(certificateType) {
+        let modalContent = '';
+        let certificateImage = '';
+        
+        if (certificateType === 'earthlink') {
+            certificateImage = './certificate-1.jpg';
+            modalContent = `
+                <h2>Front-End Development Certificate</h2>
+                <p class="modal-subtitle">Earthlink Technologies</p>
+                <img src="${certificateImage}" alt="Front-End Development Certificate" class="certificate-image" style="width:100%; border-radius:var(--radius-md); margin:20px 0;">
+                <p style="color:var(--text-secondary); font-size:1.1rem; line-height:1.7;">
+                    This certificate represents completion of a comprehensive front-end development course covering HTML5, CSS3, JavaScript, and modern web development practices.
+                    The course included hands-on projects, responsive design techniques, and best practices for building user-friendly web applications.
+                </p>
+            `;
+        } else if (certificateType === 'fleet') {
+            certificateImage = './certificate-2.jpg';
+            modalContent = `
+                <h2>Fleet Management Course</h2>
+                <p class="modal-subtitle">Professional Certification</p>
+                <img src="${certificateImage}" alt="Fleet Management Certificate" class="certificate-image" style="width:100%; border-radius:var(--radius-md); margin:20px 0;">
+                <p style="color:var(--text-secondary); font-size:1.1rem; line-height:1.7;">
+                    This professional certification covers fleet operations, maintenance scheduling, cost management, and logistics optimization for transportation businesses.
+                    The training included practical case studies and operational best practices for efficient fleet management.
+                </p>
+            `;
+        }
+        
+        modalBody.innerHTML = modalContent;
+        certificateModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+    }
+    
+    function openProjectModal(projectId) {
+        const project = projects[projectId];
+        if (!project) return;
+        
+        // Update modal content
+        document.getElementById('projectModalTitle').textContent = project.title;
+        document.getElementById('projectDescription').textContent = project.description;
+        document.getElementById('projectUrl').textContent = project.url;
+        document.getElementById('projectLines').textContent = project.lines;
+        document.getElementById('projectDuration').textContent = project.duration;
+        document.getElementById('projectTeam').textContent = project.team;
+        
+        // Update live link
+        const liveLink = document.getElementById('projectLiveLink');
+        liveLink.href = project.url;
+        if (projectId === 'elearning') {
+            liveLink.style.display = 'none';
+        } else {
+            liveLink.style.display = 'flex';
+        }
+        
+        // Update tech tags
+        const techContainer = document.querySelector('.project-modal-tech');
+        techContainer.innerHTML = '';
+        project.tech.forEach(tech => {
+            const tag = document.createElement('span');
+            tag.className = 'tech-tag';
+            tag.textContent = tech;
+            techContainer.appendChild(tag);
+        });
+        
+        // Update features
+        const featuresList = document.getElementById('projectFeatures');
+        featuresList.innerHTML = '';
+        project.features.forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+        
+        // Load screenshot
+        const screenshot = document.getElementById('projectScreenshot');
+        const loading = document.querySelector('.screenshot-loading');
+        
+        screenshot.style.display = 'none';
+        loading.style.display = 'flex';
+        
+        screenshot.onload = function() {
+            loading.style.display = 'none';
+            screenshot.style.display = 'block';
+            screenshot.style.opacity = '0';
+            screenshot.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                screenshot.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                screenshot.style.opacity = '1';
+                screenshot.style.transform = 'scale(1)';
+            }, 100);
+        };
+        
+        screenshot.onerror = function() {
+            loading.innerHTML = '<p>Unable to load screenshot. Please visit the live site.</p>';
+            loading.style.display = 'flex';
+        };
+        
+        screenshot.src = project.screenshot;
+        
+        // Show modal
+        projectModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+        
+        // Play sound
+        playSound(modalOpenSound, 0.5);
+    }
+    
+    function openPdfModal() {
+        pdfModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`;
+        
+        // Load PDF in iframe
+        const pdfFrame = document.getElementById('pdfFrame');
+        const pdfLoading = document.querySelector('.pdf-loading');
+        
+        setTimeout(() => {
+            pdfLoading.style.display = 'none';
+            pdfFrame.style.display = 'block';
+        }, 1000);
+    }
+    
+    function closeCertificateModal() {
+        certificateModal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        playSound(modalCloseSound);
+    }
+    
+    function closeProjectModal() {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        playSound(modalCloseSound);
+    }
+    
+    function closePdfModal() {
+        pdfModal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        playSound(modalCloseSound);
+    }
+    
+    function getScrollbarWidth() {
+        return window.innerWidth - document.documentElement.clientWidth;
+    }
+    
+    function setupAudioSystem() {
+        // Set initial volumes
+        updateVolumes();
+        
+        // Setup volume controls
+        bgMusicVolume.addEventListener('input', updateVolumes);
+        sfxVolume.addEventListener('input', updateVolumes);
+        ambienceVolume.addEventListener('input', updateVolumes);
+        
+        // Sound toggle
+        soundToggle.addEventListener('click', function() {
+            audioEnabled = !audioEnabled;
+            
+            if (audioEnabled) {
+                enableAudio();
+                playSound(clickSound);
+                soundToggle.classList.add('active');
+            } else {
+                disableAudio();
+                soundToggle.classList.remove('active');
+            }
+        });
+        
+        // Audio control panel
+        soundToggle.addEventListener('dblclick', function() {
+            audioControlPanel.classList.toggle('active');
+            playSound(clickSound);
+        });
+        
+        audioClose.addEventListener('click', function() {
+            audioControlPanel.classList.remove('active');
+            playSound(clickSound);
+        });
+        
+        // Audio presets
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        presetButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const preset = this.getAttribute('data-preset');
+                applyAudioPreset(preset);
+                playSound(clickSound);
+                
+                // Update active state
+                presetButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Set epic preset as active initially
+        document.querySelector('.preset-btn[data-preset="epic"]').classList.add('active');
+        
+        // Auto-start audio after user interaction
+        document.addEventListener('click', startAudioOnInteraction, { once: true });
+        document.addEventListener('touchstart', startAudioOnInteraction, { once: true });
+    }
+    
+    function startAudioOnInteraction() {
+        if (!audioEnabled) {
+            audioEnabled = true;
+            enableAudio();
+            soundToggle.classList.add('active');
+        }
+    }
+    
+    function enableAudio() {
+        bgMusic.volume = bgMusicVolume.value / 100;
+        ambience.volume = ambienceVolume.value / 100;
+        
+        // Play with a small delay to avoid autoplay restrictions
+        setTimeout(() => {
+            bgMusic.play().catch(e => console.log("Background music play failed:", e));
+            ambience.play().catch(e => console.log("Ambience play failed:", e));
+        }, 100);
+        
+        // Update UI
+        soundToggle.querySelector('.sound-icon i').className = 'fas fa-volume-up';
+    }
+    
+    function disableAudio() {
+        bgMusic.pause();
+        ambience.pause();
+        
+        // Update UI
+        soundToggle.querySelector('.sound-icon i').className = 'fas fa-volume-mute';
+    }
+    
+    function updateVolumes() {
+        const bgVolume = bgMusicVolume.value / 100;
+        const sfxVolumeValue = sfxVolume.value / 100;
+        const ambienceVolumeValue = ambienceVolume.value / 100;
+        
+        bgMusic.volume = bgVolume;
+        ambience.volume = ambienceVolumeValue;
+        
+        // Update all sound effects volumes
+        [hoverSound, clickSound, cardSound, techSound, highlightSound, modalOpenSound, modalCloseSound]
+         .forEach(sound => {
+            sound.volume = sfxVolumeValue;
+        });
+        
+        // Update display values
+        document.querySelectorAll('.volume-value').forEach((el, index) => {
+            const values = [bgMusicVolume.value, sfxVolume.value, ambienceVolume.value];
+            el.textContent = `${values[index]}%`;
+        });
+    }
+    
+    function applyAudioPreset(preset) {
+        currentAudioPreset = preset;
+        
+        switch(preset) {
+            case 'epic':
+                bgMusicVolume.value = 60;
+                sfxVolume.value = 80;
+                ambienceVolume.value = 40;
+                break;
+            case 'calm':
+                bgMusicVolume.value = 40;
+                sfxVolume.value = 50;
+                ambienceVolume.value = 20;
+                break;
+            case 'cinematic':
+                bgMusicVolume.value = 70;
+                sfxVolume.value = 90;
+                ambienceVolume.value = 50;
+                break;
+            case 'off':
+                bgMusicVolume.value = 0;
+                sfxVolume.value = 0;
+                ambienceVolume.value = 0;
+                break;
+        }
+        
+        updateVolumes();
+    }
+    
+    function playSound(soundElement, volumeMultiplier = 1) {
+        if (!audioEnabled) return;
+        
+        try {
+            soundElement.currentTime = 0;
+            soundElement.volume = soundElement.volume * volumeMultiplier;
+            soundElement.play().catch(e => console.log("Sound play failed:", e));
+        } catch(e) {
+            console.log("Sound error:", e);
+        }
+    }
+    
+    function playEntranceAnimation() {
+        // Add visual effects
+        document.querySelector('.hero-content').style.animation = 'fadeInUp 1s ease-out forwards';
+    }
+    
+    // Initialize typewriter effect
+    window.addEventListener('load', function() {
+        const typewriter = document.querySelector('.typewriter');
+        if (typewriter) {
+            const text = typewriter.textContent;
+            typewriter.textContent = '';
+            typewriter.style.borderRight = '3px solid var(--accent)';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    typewriter.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    // Blinking cursor effect
+                    setInterval(() => {
+                        typewriter.style.borderRightColor = typewriter.style.borderRightColor === 'transparent' ? 'var(--accent)' : 'transparent';
+                    }, 500);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        }
+        
+        // Initialize audio toggle state
+        if (audioEnabled) {
+            soundToggle.classList.add('active');
+        }
+    });
 });
