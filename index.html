@@ -1,1 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ephraim | Web Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="book-container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="cover">
+            <div class="cover-content">
+                <div class="closed-book" id="closedBook">
+                    <div class="book-spine"></div>
+                    <div class="book-front">
+                        <h1 class="title-main">Ephraim</h1>
+                        <h2 class="title-sub">Web Developer & System Builder</h2>
+                        <div class="book-decoration">
+                            <div class="decoration-line"></div>
+                            <div class="decoration-circle"></div>
+                            <div class="decoration-line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="open-instruction">
+                    <div class="hand-icon">
+                        <i class="fas fa-hand-point-up"></i>
+                    </div>
+                    <p>Swipe or tap to open</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Book Pages Container -->
+        <div class="book-pages" id="bookPages">
+            <!-- Page 1 - Introduction -->
+            <section class="page page-1 active" data-page="1" aria-label="About Me">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-number">1</div>
+                        <h2 class="page-title">About Me</h2>
+                    </div>
+                    <div class="page-body">
+                        <div class="text-container">
+                            <p class="intro-text">
+                                I am a passionate <span class="highlight">Web Developer</span> specializing in:
+                            </p>
+                            <ul class="skills-list">
+                                <li><span class="skill-icon">⚡</span>PHP & MySQL</li>
+                                <li><span class="skill-icon">⚡</span>HTML5 & CSS3</li>
+                                <li><span class="skill-icon">⚡</span>JavaScript</li>
+                            </ul>
+                            <p class="intro-text">
+                                I love building clean, scalable, and human-centered digital experiences that solve real problems.
+                            </p>
+                            <div class="passion-section">
+                                <h3>My Passion</h3>
+                                <div class="passion-items">
+                                    <div class="passion-item">
+                                        <i class="fas fa-code"></i>
+                                        <p>Clean Code</p>
+                                    </div>
+                                    <div class="passion-item">
+                                        <i class="fas fa-brain"></i>
+                                        <p>Problem Solving</p>
+                                    </div>
+                                    <div class="passion-item">
+                                        <i class="fas fa-robot"></i>
+                                        <p>AI Systems</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-corner"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 2 - Skills & Experience -->
+            <section class="page page-2" data-page="2" aria-label="Skills & Experience">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-number">2</div>
+                        <h2 class="page-title">Skills & Experience</h2>
+                    </div>
+                    <div class="page-body">
+                        <!-- Soft Skills -->
+                        <div class="skills-section">
+                            <h3><i class="fas fa-user-circle"></i> Core Skills</h3>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Speaking</span>
+                                        <span class="skill-value" data-value="85">0%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="85"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Problem Solving</span>
+                                        <span class="skill-value" data-value="90">0%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="90"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Analytical Thinking</span>
+                                        <span class="skill-value" data-value="88">0%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="88"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Team Collaboration</span>
+                                        <span class="skill-value" data-value="87">0%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-width="87"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Stack -->
+                        <div class="tech-section">
+                            <h3><i class="fas fa-cogs"></i> Technical Stack</h3>
+                            <div class="tech-grid">
+                                <div class="tech-item" data-tech="html">
+                                    <i class="fab fa-html5"></i>
+                                    <span>HTML5</span>
+                                </div>
+                                <div class="tech-item" data-tech="css">
+                                    <i class="fab fa-css3-alt"></i>
+                                    <span>CSS3</span>
+                                </div>
+                                <div class="tech-item" data-tech="js">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tech-item" data-tech="php">
+                                    <i class="fab fa-php"></i>
+                                    <span>PHP</span>
+                                </div>
+                                <div class="tech-item" data-tech="mysql">
+                                    <i class="fas fa-database"></i>
+                                    <span>MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education -->
+                        <div class="education-section">
+                            <h3><i class="fas fa-graduation-cap"></i> Education & Certificates</h3>
+                            <div class="education-item">
+                                <div class="edu-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="edu-content">
+                                    <h4>Web Development</h4>
+                                    <p>Comprehensive training in modern web technologies and system architecture</p>
+                                </div>
+                            </div>
+                            <div class="education-item">
+                                <div class="edu-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="edu-content">
+                                    <h4>gebeyayie.com</h4>
+                                    <p>Founder and owner - Registered intellectual property</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 3 - Projects -->
+            <section class="page page-3" data-page="3" aria-label="Projects">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-number">3</div>
+                        <h2 class="page-title">Projects</h2>
+                    </div>
+                    <div class="page-body">
+                        <div class="projects-container">
+                            <!-- Project 1 -->
+                            <div class="project-card" data-project="1">
+                                <div class="sticky-note">
+                                    <div class="note-header">
+                                        <div class="note-pin"></div>
+                                        <h3>gebeyayie.com</h3>
+                                    </div>
+                                    <div class="note-content">
+                                        <p>A comprehensive web platform showcasing my work and services in web development and system building.</p>
+                                        <div class="tech-tags">
+                                            <span>PHP</span>
+                                            <span>MySQL</span>
+                                            <span>JavaScript</span>
+                                        </div>
+                                    </div>
+                                    <button class="view-project-btn" data-url="https://gebeyayie.com">
+                                        View Project <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Project 2 -->
+                            <div class="project-card" data-project="2">
+                                <div class="sticky-note">
+                                    <div class="note-header">
+                                        <div class="note-pin"></div>
+                                        <h3>Portfolio System</h3>
+                                    </div>
+                                    <div class="note-content">
+                                        <p>Interactive book-like portfolio with 3D page flip animations and responsive design.</p>
+                                        <div class="tech-tags">
+                                            <span>HTML5</span>
+                                            <span>CSS3</span>
+                                            <span>JavaScript</span>
+                                        </div>
+                                    </div>
+                                    <button class="view-project-btn" data-url="#">
+                                        View Details <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 -->
+                            <div class="project-card" data-project="3">
+                                <div class="sticky-note">
+                                    <div class="note-header">
+                                        <div class="note-pin"></div>
+                                        <h3>AI Integration Project</h3>
+                                    </div>
+                                    <div class="note-content">
+                                        <p>Modern web application with AI capabilities for enhanced user experiences.</p>
+                                        <div class="tech-tags">
+                                            <span>PHP</span>
+                                            <span>JavaScript</span>
+                                            <span>API</span>
+                                        </div>
+                                    </div>
+                                    <button class="view-project-btn" data-url="#">
+                                        Coming Soon <i class="fas fa-clock"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-instruction">
+                            <p>Click on any project card to view details</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 4 - Contact -->
+            <section class="page page-4" data-page="4" aria-label="Contact">
+                <div class="page-content">
+                    <div class="page-header">
+                        <div class="page-number">4</div>
+                        <h2 class="page-title">Let's Connect</h2>
+                    </div>
+                    <div class="page-body">
+                        <div class="contact-container">
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <h3>Location</h3>
+                                        <p>Available for remote work worldwide</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item" id="emailContact">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <h3>Email</h3>
+                                        <p class="email-text">contact@gebeyayie.com</p>
+                                        <span class="copy-hint">Click to copy</span>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <h3>Website</h3>
+                                        <p>gebeyayie.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="social-links">
+                                <h3>Find Me Online</h3>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon" aria-label="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="Twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="CodePen">
+                                        <i class="fab fa-codepen"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-message">
+                                <p>I'm always open to discussing new opportunities, creative projects, or just having a chat about technology!</p>
+                            </div>
+                        </div>
+
+                        <div class="page-end">
+                            <div class="end-decoration">
+                                <div class="line"></div>
+                                <div class="circle"></div>
+                                <div class="line"></div>
+                            </div>
+                            <p class="end-quote">"Building the web, one line at a time"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="book-controls">
+            <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous page">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="page-indicator">
+                <span class="current-page" id="currentPage">1</span>
+                <span class="separator">/</span>
+                <span class="total-pages">4</span>
+            </div>
+            
+            <button class="nav-btn next-btn" id="nextBtn" aria-label="Next page">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Project Modal -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">&times;</button>
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-tech" id="modalTech"></div>
+                <a class="modal-link" id="modalLink" target="_blank" rel="noopener noreferrer">
+                    Visit Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
